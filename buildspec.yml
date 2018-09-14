@@ -11,12 +11,11 @@ phases:
 
   pre_build:
     commands:
-      # Set the SECRET_KEY_BASE environment variable for running tests
-      - export SECRET_KEY_BASE=$(rake secret)
+      - rm -rf app/webpage
 
-      # Run the tests using RSpec.
-      - rspec
-
+  build:
+    commands:
+      - rake build 
   post_build:
     commands:
       - aws cloudformation package --template template.yml --s3-bucket $S3_BUCKET --output-template-file template-export.yml
