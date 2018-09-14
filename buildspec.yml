@@ -4,17 +4,17 @@ phases:
   pre_build:
     commands:
       - echo Removing the Original WebPage Directory
-      - rm -r webpage
+      - rm -r build
       - bundle install
     finally:
       - echo WebPage Directory Removed
   build:
     commands:
       - echo Building the WebPage File
-      - rake build 
+      - rake mm:build
     finally:
       - echo WebPage Directory Built
 artifacts:
   type: zip
   files:
-    - '**/*'
+    - build/*
